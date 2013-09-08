@@ -1,10 +1,11 @@
 #include <node.h>
 
-// C standard library
+// 调用cubieboard的硬件控制库
 extern "C"{
 #include "gpio_lib.h"
 }
 
+// 定义一些工具宏
 #define WIRING_DEFINE_CONSTANT(NAME, VALUE) (target)->Set( \
         v8::String::NewSymbol(NAME), \
         v8::Integer::New(VALUE), \
@@ -16,6 +17,7 @@ extern "C"{
 using namespace v8;
 
 
+// 初始化gpio的寄存器
 Handle<Value> GPIO_init(const Arguments& args) {
 
     HandleScope scope;
@@ -44,6 +46,7 @@ Handle<Value> GPIO_init(const Arguments& args) {
     return scope.Close(Integer::New(SETUP_OK));
 }
 
+
 Handle<Value> GPIO_cleanup(const Arguments& args) {
     HandleScope scope;
 
@@ -53,6 +56,7 @@ Handle<Value> GPIO_cleanup(const Arguments& args) {
 
 }
 
+// 获取引脚当状态 IN,OUT,PRE?
 Handle<Value> GPIO_getcfg(const Arguments& args) {
     HandleScope scope;
     
@@ -76,6 +80,7 @@ Handle<Value> GPIO_getcfg(const Arguments& args) {
     return scope.Close(Integer::New(result));
 }
 
+// 读取的电平状态 HIGH?LOW?
 Handle<Value> GPIO_input(const Arguments& args) {
     HandleScope scope;
 
@@ -107,7 +112,7 @@ Handle<Value> GPIO_input(const Arguments& args) {
 }
 
 
-
+// 输出电平
 Handle<Value> GPIO_output(const Arguments& args) {
     HandleScope scope;
 
@@ -144,6 +149,7 @@ Handle<Value> GPIO_output(const Arguments& args) {
 
 }
 
+// 设置GPIO功能 IN?OUT?PRE?
 Handle<Value> GPIO_setcfg(const Arguments& args) {
     HandleScope scope;
 

@@ -6,6 +6,7 @@ GPIO.init();
 
 GPIO.setcfg(LED, GPIO.OUT);
 
+// 让led 一闪一闪
 var blink = function(){
     if(status){
 	GPIO.output(LED, GPIO.LOW);
