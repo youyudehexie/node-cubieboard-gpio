@@ -1,4 +1,5 @@
-node-cubieboard-gpio
-====================
+To compile, run
 
-cubieboard下node.js的GPIO
+```
+npm build .
+```
